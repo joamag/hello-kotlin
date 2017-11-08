@@ -1,9 +1,10 @@
-import org.jetbrains.ktor.host.embeddedServer
-import org.jetbrains.ktor.http.ContentType
-import org.jetbrains.ktor.netty.Netty
-import org.jetbrains.ktor.response.respondText
-import org.jetbrains.ktor.routing.get
-import org.jetbrains.ktor.routing.routing
+import io.ktor.application.call
+import io.ktor.http.ContentType
+import io.ktor.response.respondText
+import io.ktor.routing.get
+import io.ktor.routing.routing
+import io.ktor.server.engine.embeddedServer
+import io.ktor.server.netty.Netty
 
 /**
  * The default (bind) host to be used when none is defined,
@@ -29,6 +30,6 @@ fun main(args: Array<String>) {
 
     // prints a message about the initial operation of the server
     // ans starts the blocking serving operation
-    print("Starting server on $host:$port")
+    print("Starting server on $host:$port\n")
     server.start(wait = true)
 }
