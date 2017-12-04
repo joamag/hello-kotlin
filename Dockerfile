@@ -8,6 +8,8 @@ EXPOSE 8080
 ENV HOST 0.0.0.0
 ENV PORT 8080
 
-RUN pip3 install -r /requirements.txt && pip3 install -r /extra.txt && pip3 install --upgrade netius
+RUN apk update && apk add openjdk8
+RUN wget https://services.gradle.org/distributions/gradle-4.3.1-bin.zip && unzip gradle-4.3.1-bin.zip
+RUN ln -s $(pwd)/gradle-4.3.1/bin/gradle /usr/bin/gradle
 
 CMD ["/usr/bin/python3", "/src/hello_appier/main.py"]
