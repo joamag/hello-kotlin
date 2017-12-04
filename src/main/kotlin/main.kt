@@ -1,6 +1,7 @@
 import io.ktor.application.call
 import io.ktor.http.ContentType
 import io.ktor.response.respondText
+import io.ktor.response.respondWrite
 import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
@@ -24,6 +25,9 @@ fun main(args: Array<String>) {
         routing {
             get(path = "/") {
                 call.respondText("Hello, world!", ContentType.Text.Html)
+            }
+            get(path = "/message/{message}") {
+                call.respondWrite { write(call.parameters["message"]) }
             }
         }
     }
