@@ -11,12 +11,12 @@ import io.ktor.server.netty.Netty
  * The default (bind) host to be used when none is defined,
  * notice that this values is permissive by default.
  */
-val host = "0.0.0.0"
+var host = "0.0.0.0"
 
 /**
  * The default port to be used when none is defined.
  */
-val port = 8080
+var port = 8080
 
 fun main(args: Array<String>) {
     // creates the server object with the provided port and host
@@ -31,6 +31,11 @@ fun main(args: Array<String>) {
             }
         }
     }
+
+    // tries to retrieve the value of the environment variables
+    // that are going to control the execution
+    host = if (System.getenv("HOST") == null) host else System.getenv("HOST")
+    port = if (System.getenv("PORT") == null) port else System.getenv("PORT").toInt()
 
     // retrieves the current versions for both the JVM and the
     // kotlin runtime operations
