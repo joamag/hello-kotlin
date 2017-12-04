@@ -30,8 +30,8 @@ fun main(args: Array<String>) {
 
     // retrieves the current versions for both the JVM and the
     // kotlin runtime operations
-    val javaVersion = System.getProperty("java.version");
-    val kotlinVersion = kotlin.KotlinVersion.CURRENT;
+    val javaVersion = System.getProperty("java.version")
+    val kotlinVersion = kotlin.KotlinVersion.CURRENT
 
     // prints a message about the initial operation of the server
     // ans starts the blocking serving operation
