@@ -16,6 +16,6 @@ WORKDIR /app
 RUN apk update && apk add openjdk8
 RUN wget https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip && unzip gradle-$GRADLE_VERSION-bin.zip
 RUN ln -s $(pwd)/gradle-$GRADLE_VERSION/bin/gradle /usr/bin/gradle
-RUN gradle build
+RUN gradle -Dorg.gradle.parallel=false build
 
 CMD ["gradle", "run"]
