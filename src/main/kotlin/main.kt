@@ -28,10 +28,10 @@ fun main(args: Array<String>) {
                 call.respondText("<strong>Hello, world!</strong>", ContentType.Text.Html)
             }
             get(path = "/message/{message}") {
-                call.respondText(call.parameters["message"] as String)
+                call.respondText(call.parameters["message"] as String, ContentType.Text.Plain)
             }
             get(path = "/stream/{message}") {
-                call.respondOutputStream { write((call.parameters["message"] as String).toByteArray(Charset.defaultCharset())) }
+                call.respondOutputStream(ContentType.Text.Plain) { write((call.parameters["message"] as String).toByteArray(Charset.defaultCharset())) }
             }
         }
     }

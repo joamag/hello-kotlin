@@ -4,6 +4,7 @@ version "1.0-SNAPSHOT"
 buildscript {
     ext.kotlin_version = "1.3.40"
     ext.ktor_version = "1.2.2"
+    ext.logback_version = "1.2.3"
 
     repositories {
         mavenCentral()
@@ -36,6 +37,7 @@ dependencies {
     compile "io.ktor:ktor-server-core:$ktor_version"
     compile "io.ktor:ktor-locations:$ktor_version"
     compile "io.ktor:ktor-server-netty:$ktor_version"
+    compile "ch.qos.logback:logback-classic:$logback_version"
 }
 
 compileKotlin {
