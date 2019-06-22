@@ -24,7 +24,7 @@ fun main(args: Array<String>) {
     val server = embeddedServer(Netty, port = port, host = host) {
         routing {
             get(path = "/") {
-                call.respondText("Hello, world!", ContentType.Text.Html)
+                call.respondText("<strong>Hello, world!</strong>", ContentType.Text.Html)
             }
             get(path = "/message/{message}") {
                 call.respondWrite { write(call.parameters["message"]) }
