@@ -6,12 +6,8 @@
 
 local.properties
 
+/.idea
 /.gradle
-/.idea/gradle.xml
-/.idea/workspace.xml
-/.idea/markdown-*.xml
-/.idea/libraries
-/.idea/markdown-navigator
 
 /gradlew
 /gradlew.bat
