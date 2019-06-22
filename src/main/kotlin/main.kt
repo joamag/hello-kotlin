@@ -1,11 +1,12 @@
 import io.ktor.application.call
 import io.ktor.http.ContentType
+import io.ktor.response.respondOutputStream
 import io.ktor.response.respondText
-import io.ktor.response.respondWrite
 import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
+import java.nio.charset.Charset
 
 /**
  * The default (bind) host to be used when none is defined,
@@ -27,7 +28,10 @@ fun main(args: Array<String>) {
                 call.respondText("<strong>Hello, world!</strong>", ContentType.Text.Html)
             }
             get(path = "/message/{message}") {
-                call.respondWrite { write(call.parameters["message"]) }
+                call.respondText(call.parameters["message"] as String)
+            }
+            get(path = "/stream/{message}") {
+                call.respondOutputStream { write((call.parameters["message"] as String).toByteArray(Charset.defaultCharset())) }
             }
         }
     }
@@ -40,7 +44,7 @@ fun main(args: Array<String>) {
     // retrieves the current versions for both the JVM and the
     // kotlin runtime operations
     val javaVersion = System.getProperty("java.version")
-    val kotlinVersion = kotlin.KotlinVersion.CURRENT
+    val kotlinVersion = KotlinVersion.CURRENT
 
     // prints a message about the initial operation of the server
     // ans starts the blocking serving operation
