@@ -8,6 +8,11 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import io.netty.util.Version
 import java.nio.charset.Charset
+import org.slf4j.Logger.ROOT_LOGGER_NAME
+import org.slf4j.LoggerFactory
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+
 
 /**
  * The default (bind) host to be used when none is defined,
@@ -21,6 +26,11 @@ var host = "0.0.0.0"
 var port = 8080
 
 fun main(args: Array<String>) {
+    // retrieves the reference to the root logger and then updates
+    // the verbosity level to the default info level as expected
+    val root = LoggerFactory.getLogger(ROOT_LOGGER_NAME) as Logger
+    root.level = Level.INFO
+
     // creates the server object with the provided port and host
     // values as defined by standard
     val server = embeddedServer(Netty, port = port, host = host) {
