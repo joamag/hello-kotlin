@@ -6,6 +6,7 @@ import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
+import io.netty.util.Version
 import java.nio.charset.Charset
 
 /**
@@ -45,9 +46,10 @@ fun main(args: Array<String>) {
     // kotlin runtime operations
     val javaVersion = System.getProperty("java.version")
     val kotlinVersion = KotlinVersion.CURRENT
+    val nettyVersion = Version.identify()["netty-common"]?.artifactVersion()
 
     // prints a message about the initial operation of the server
     // ans starts the blocking serving operation
-    print("Starting server on $host:$port (kotlin/$kotlinVersion jvm/$javaVersion)\n")
+    print("Starting server on $host:$port (kotlin/$kotlinVersion jvm/$javaVersion netty/$nettyVersion)\n")
     server.start(wait = true)
 }
