@@ -24,11 +24,26 @@ var host = "0.0.0.0"
  */
 var port = 8080
 
+/**
+ * The map of multiple logging levels to be used for the logging
+ * of the current system.
+ */
+var levels = mapOf(
+    "OFF" to Level.OFF,
+    "TRACE" to Level.TRACE,
+    "DEBUG" to Level.DEBUG,
+    "INFO" to Level.INFO,
+    "WARN" to Level.WARN,
+    "ERROR" to Level.ERROR
+)
+
 fun main(args: Array<String>) {
     // retrieves the reference to the root logger and then updates
     // the verbosity level to the default info level as expected
+    var level = System.getenv("LEVEL")
+    if (level == null) level = "INFO"
     val root = LoggerFactory.getLogger(ROOT_LOGGER_NAME) as Logger
-    root.level = Level.INFO
+    root.level = levels.getOrDefault(level, Level.INFO)
 
     // creates the server object with the provided port and host
     // values as defined by standard
