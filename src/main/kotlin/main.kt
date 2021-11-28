@@ -1,14 +1,14 @@
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
-import io.ktor.application.call
-import io.ktor.http.ContentType
-import io.ktor.response.respondOutputStream
-import io.ktor.response.respondText
-import io.ktor.routing.get
-import io.ktor.routing.routing
-import io.ktor.server.engine.embeddedServer
-import io.ktor.server.netty.Netty
+import io.ktor.application.*
+import io.ktor.http.*
+import io.ktor.response.*
+import io.ktor.routing.*
+import io.ktor.server.engine.*
+import io.ktor.server.netty.*
 import io.netty.util.Version
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.slf4j.Logger.ROOT_LOGGER_NAME
 import org.slf4j.LoggerFactory
 import java.nio.charset.Charset
@@ -56,7 +56,11 @@ fun main(args: Array<String>) {
                 call.respondText(call.parameters["message"] as String, ContentType.Text.Plain)
             }
             get(path = "/stream/{message}") {
-                call.respondOutputStream(ContentType.Text.Plain) { write((call.parameters["message"] as String).toByteArray(Charset.defaultCharset())) }
+                call.respondOutputStream(ContentType.Text.Plain) {
+                    withContext(Dispatchers.IO) {
+                        write((call.parameters["message"] as String).toByteArray(Charset.defaultCharset()))
+                    }
+                }
             }
         }
     }
