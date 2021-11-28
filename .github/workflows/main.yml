@@ -11,6 +11,8 @@ jobs:
     container: gradle:${{ matrix.gradle-version }}
     steps:
       - uses: actions/checkout@v1
-      - run: gradle --version
+      - run: |
+          java -version
+          gradle --version
       - run: gradle build
       - run: gradle test
