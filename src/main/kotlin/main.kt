@@ -73,7 +73,7 @@ fun main(args: Array<String>) {
     val nettyVersion = Version.identify()["netty-common"]?.artifactVersion()
 
     // prints a message about the initial operation of the server
-    // ans starts the blocking serving operation
+    // and starts the blocking serving operation
     print("Starting server on $host:$port (kotlin/$kotlinVersion jvm/$javaVersion netty/$nettyVersion)\n")
     server.start(wait = true)
 }
