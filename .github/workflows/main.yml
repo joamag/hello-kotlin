@@ -6,7 +6,7 @@ jobs:
     timeout-minutes: 10
     strategy:
       matrix:
-        python-version: [6, 7]
+        gradle-version: [6, 7]
     runs-on: ubuntu-latest
     container: gradle:${{ matrix.gradle-version }}
     steps:
