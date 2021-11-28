@@ -6,7 +6,7 @@ jobs:
     timeout-minutes: 10
     strategy:
       matrix:
-        gradle-version: ["6-jdk8", "7-jdk8"]
+        gradle-version: ["6-jdk8", "6-jdk11", "7-jdk8", "7-jdk11"]
     runs-on: ubuntu-latest
     container: gradle:${{ matrix.gradle-version }}
     steps:
