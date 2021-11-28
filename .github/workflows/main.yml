@@ -1,0 +1,16 @@
+name: Main Workflow
+on: [push]
+jobs:
+  build:
+    name: Build
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        python-version: [6, 7]
+    runs-on: ubuntu-latest
+    container: gradle:${{ matrix.gradle-version }}
+    steps:
+      - uses: actions/checkout@v1
+      - run: gradle --version
+      - run: gradle build
+      - run: gradle test
