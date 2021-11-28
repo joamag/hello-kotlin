@@ -7,6 +7,5 @@ internal class UtilTest {
     fun testSum() {
         assertEquals(42, Util.sum(40, 2))
         assertEquals(80, Util.sum(40, 40))
-        assertEquals(81, Util.sum(40, 40))
     }
 }
