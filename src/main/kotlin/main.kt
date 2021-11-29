@@ -47,7 +47,7 @@ fun main(args: Array<String>) {
 
     // creates the server object with the provided port and host
     // values as defined by standard
-    val server = embeddedServer(Netty, port = port, host = host) {
+    val server = embeddedServer(Netty, port = port, host = host, watchPaths = listOf("classes")) {
         routing {
             get(path = "/") {
                 call.respondText("<strong>Hello, world!</strong>", ContentType.Text.Html)
