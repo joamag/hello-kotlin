@@ -2,11 +2,12 @@ group "hive.pt"
 version "1.0-SNAPSHOT"
 
 buildscript {
-    ext.kotlin_version = "1.5.31"
-    ext.ktor_version = "1.6.5"
+    ext.kotlin_version = "1.7.21"
+    ext.ktor_version = "2.1.3"
     ext.logback_version = "1.2.6"
-    ext.netty_version = "4.1.70.Final"
+    ext.netty_version = "4.1.85.Final"
     ext.gradle_version = "7.0.3"
+    ext.junit_version = "4.13.1"
 
     repositories {
         mavenCentral()
@@ -40,7 +41,7 @@ dependencies {
     implementation "ch.qos.logback:logback-classic:$logback_version"
     implementation "io.netty:netty-all:$netty_version"
 
-    testImplementation "junit:junit:4.13.1"
+    testImplementation "junit:junit:$junit_version"
     testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
 }
 
