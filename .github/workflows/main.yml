@@ -1,5 +1,8 @@
 name: Main Workflow
-on: [push]
+on:
+  push:
+    tags:
+      - "*"
 jobs:
   build:
     name: Build
@@ -10,9 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     container: gradle:${{ matrix.gradle-version }}
     steps:
-      - uses: actions/checkout@v1
-      - run: |
+      - name: Checkout code from repository
+        uses: actions/checkout@v3
+      - name: Print Java and Gradle information
+        run: |
           java -version
           gradle --version
-      - run: gradle build
-      - run: gradle test
+      - name: Build package
+        run: gradle build
+      - name: Run unit tests
+        run: gradle test
